@@ -64,4 +64,26 @@ public class BST<E extends Comparable<E>> { //对泛型E进行限制. 也就是�
         }
         return node;
     }
+
+    //看二分搜索树种是否含有元素e
+    public boolean contains(E e){
+
+        return contains(root, e); //以根为节点, 查看是否含有元素e
+    }
+
+    //看以node为根的二分搜索树种是否含有元素e, 递归算法
+    private boolean contains(Node node, E e){
+
+        if(node == null){
+            return false;
+        }
+        if(e.compareTo(node.e) == 0){
+            return true;
+        }
+        else if(e.compareTo(node.e) < 0){
+            return contains(node.left, e);
+        }else{
+            return contains(node.right, e);
+        }
+    }
 }
