@@ -86,4 +86,23 @@ public class BST<E extends Comparable<E>> { //对泛型E进行限制. 也就是�
             return contains(node.right, e);
         }
     }
+
+    //二分搜索树的 前序遍历
+    public void preOrder(){
+        preOrder(root);
+    }
+
+    //前序遍历以node为根的二分搜索树, 递归算法
+    private void preOrder(Node node){
+
+        //递归终止的条件
+        if(node == null){
+            return;
+        }
+        //递归组成的逻辑.  -->当熟练使用递归之后, 可以不按照这个规律去写. if(node != null){ code : 进行前序遍历的代码}
+        System.out.println(node.e);
+        preOrder(node.left);
+        preOrder(node.right);
+    }
+
 }
