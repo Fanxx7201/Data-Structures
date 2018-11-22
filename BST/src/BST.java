@@ -107,9 +107,72 @@ public class BST<E extends Comparable<E>> { //对泛型E进行限制. 也就是�
 
     @Override
     public String toString(){
+        //res: 生成字符串的结果
         StringBuilder res = new StringBuilder();
-
-        return "";
+        //前序遍历过程: 先展现左子树, 再展现右子树
+        //root根节点
+        //depth深度 根节点的深度是0, 根节点的左子树和右子树的深度是1 , 以此类推
+        generateBSTString(root, 0, res);
+        return res.toString();
     }
+
+    //生成以node为根节点, 深度为depth的描述二叉树的字符串.
+    private void generateBSTString(Node node, int depth, StringBuilder res){
+
+        //generateDepthString :生成一个表达深度的字符串
+        if(node == null){
+            res.append(generateDepthString(depth) + "null\n");
+            return;
+        }
+
+        //node.e : 当前节点的元素
+        res.append(generateDepthString(depth) + node.e + "\n");
+        //递归, 遍历左子树和右子树
+        generateBSTString(node.left, depth + 1,  res);
+        generateBSTString(node.right, depth + 1, res);
+    }
+
+    //主要就是做一个标识, 表示这个节点的层级关系.
+    private String generateDepthString(int depth){
+        StringBuilder res = new StringBuilder();
+        for (int i = 0; i < depth; i ++){ //遍历层级
+            res.append("--");
+        }
+            return res.toString();
+    }
+
+    //中序遍历
+    public void inOrder(){
+        inOrder(root);
+    }
+    //中序遍历以node为根的二分搜索树, 递归算法
+    private void inOrder(Node node){
+
+        if(node == null){
+            return;
+        }
+        inOrder(node.left);
+        System.out.println(node.e);
+        inOrder(node.right);
+    }
+
+    //二分搜索树的后序遍历
+    public void postOrder(){
+        postOrder(root);
+    }
+
+    //后序遍历以node为根的二分搜索树, 递归算法
+    private void postOrder(Node node){
+
+        if(node == null){
+            return;
+        }
+
+        postOrder(node.left);
+        postOrder(node.right);
+        System.out.println(node.e);
+    }
+
+
 
 }
