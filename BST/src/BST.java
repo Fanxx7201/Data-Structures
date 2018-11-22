@@ -105,4 +105,11 @@ public class BST<E extends Comparable<E>> { //对泛型E进行限制. 也就是�
         preOrder(node.right);
     }
 
+    @Override
+    public String toString(){
+        StringBuilder res = new StringBuilder();
+
+        return "";
+    }
+
 }
