@@ -56,16 +56,38 @@ public class LinkedListMap<K, V> implements Map<K, V> {
     }
     @Override
     public void add(K key, V value) {
-        //添加操作,
+        //添加操作
+        //添加操作时, 刚进来, 我们要来看一下是否有这个键对应的节点.
         Node node = getNode(key);
         if(node == null){
-            dummyHead.next = new Node();
+            dummyHead.next = new Node(key, value, dummyHead.next);
+            size++;
+        }else { //我们做添加操作时, 要保证key的唯一性.
+            //如果不唯一我们可以抛异常, 但是, 例如set集合, 元素重复的时候, 直接就覆盖了原来重复的元素
+            //所以这里我们惯例覆盖, 不抛异常了
+            node.value = value;
         }
 
     }
 
     @Override
-    public Object remove(Object key) {
+    public V remove(K key) {
+        Node prev = dummyHead;
+        while (prev.next != null){
+            if(prev.next != null){
+                if(prev.next.key.equals(key)){
+                    break;
+                }
+                prev = prev.next;
+            }
+        }
+        if(prev.next != null){
+            Node delNode = prev.next;
+            prev.next = delNode.next;
+            delNode.next = null;
+            size --;
+            return delNode.value;
+        }
         return null;
     }
 
@@ -81,9 +103,20 @@ public class LinkedListMap<K, V> implements Map<K, V> {
         return node == null ? null : node.value;
     }
 
+    /**
+     * @Description  修改操作
+     * @Date  2018/11/25
+     * @Param [key, newValue]
+     * @return void
+     **/
     @Override
-    public void set(Object key, Object newValue) {
+    public void set(K key, V newValue) {
 
+        Node node = getNode(key);
+        if(node == null){
+            throw new IllegalArgumentException(key + "doesn't exist");
+        }
+        node.value = newValue;
     }
 
     @Override
