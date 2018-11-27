@@ -20,6 +20,20 @@ public class MaxHeap<E extends Comparable<E>> {
         data = new Array<>();
     }
 
+    /**
+     * @Description  heapify : 构造函数.
+     * @Date  2018/11/27
+     * @Param [arr]
+     * @return
+     **/
+    public MaxHeap(E[] arr){
+        //让arr, 变成动态数组
+        data = new Array<>(arr);
+        for(int i = parent(arr.length - 1); i >= 0; i--){
+            siftDown(i);
+        }
+    }
+
     //返回堆中的元素个数
     public int size(){
         return data.getSize();
@@ -105,5 +119,15 @@ public class MaxHeap<E extends Comparable<E>> {
             k = j;
         }
     }
+
+    //取出堆中最大的元素, 并且替换成元素e
+    public E replace(E e){
+        E ret = findMax();
+        data.set(0, e);
+        siftDown(0);
+        return ret;
+    }
+
+
 
 }

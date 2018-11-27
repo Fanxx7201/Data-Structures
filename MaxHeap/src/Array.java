@@ -15,6 +15,16 @@ public class Array<E> {
         size = 0;
     }
 
+    //将传进来的数组, 直接转换成动态的数组
+    public Array(E[] arr){
+        data = (E[])new Object[arr.length];
+        //遍历数组中的元素, 添加到动态数组中.
+        for (int i = 0; i < arr.length; i++){
+            data[i] = arr[i];
+        }
+        size = arr.length;
+    }
+
     // 无参数的构造函数，默认数组的容量capacity=10
     public Array(){
         this(10);
