@@ -64,5 +64,46 @@ public class MaxHeap<E extends Comparable<E>> {
         }
     }
 
+    //看堆中最大元素
+    public E findMax(){
+        if(data.getSize() == 0){
+            throw new IllegalArgumentException("can not findMax when heap is empty");
+        }
+        return data.get(0);
+    }
+
+    //取出堆中最大元素
+    public E extractMax(){
+
+        E ret = findMax();
+        //将0位置元素和最后一个位置元素交换位置
+        data.swap(0, data.getSize() - 1);
+        data.removeLast();
+        //将索引为0的元素进行下浮操作.
+        siftDown(0);
+        return ret;
+    }
+
+    private void siftDown(int k){
+        //下沉结束: k这个节点没有孩子了, 下沉就结束了
+        //也就是左孩子的索引, 比数据库元素的总数还要小.
+        while(leftChild(k) < data.getSize()){
+
+            //j是k节点的左孩子
+            int j = leftChild(k);
+            //j+1 是k节点的右孩子
+            //判断右孩子是不是比左孩子的值大.
+            if(j + 1 < data.getSize() && data.get(j + 1).compareTo(data.get(j)) >= 0){
+                //总之, data[j] 是leftChild 和rightChild中的最大值.
+                j = rightChild(k);
+            }
+            if(data.get(k).compareTo(data.get(j)) >= 0){
+                break;
+            }
+            data.swap(k, j);
+            //把j赋值给k, 进行新一轮的循环.
+            k = j;
+        }
+    }
 
 }
