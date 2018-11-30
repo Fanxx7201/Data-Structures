@@ -27,7 +27,7 @@ public class Student {
     }
 
     @Override
-    public boolean equals(Object o){
+    public boolean equals(Object o){ //传进来一定是
 
         if(this == o)
             return true;
