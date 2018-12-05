@@ -17,6 +17,7 @@ public class Main {
         HashMap<Student, Integer> scores = new HashMap<>();
         scores.put(student, 100);
 
+
         //如果我们不覆盖hashCode的话, java是根据地址, 转成的hashCode.
     }
 }
