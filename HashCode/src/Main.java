@@ -18,6 +18,8 @@ public class Main {
         scores.put(student, 100);
 
 
-        //如果我们不覆盖hashCode的话, java是根据地址, 转成的hashCode.
+        //如果我们不覆盖hashCode的话, java是根据每一个Object类的地址, 转成的hashCode.
+        Student student2 = new Student(2, 2, "bobo", "liu");
+        System.out.println(student2.hashCode());
     }
 }

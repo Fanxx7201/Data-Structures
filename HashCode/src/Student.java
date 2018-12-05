@@ -26,8 +26,16 @@ public class Student {
         return hash;
     }
 
+    /**
+     * @Description  判断两个对象是否相等
+     * 重写equals方法的原因是: 当产生哈希冲突的时候, 如果我们重写了equals方法, 就可以判断这两个对象的HashCode是否相等.
+     * 如果不重写, java会根据地址计算hashCode. 这样计算出来的hashCode就是不一致的.
+     * @Date  2018/12/5
+     * @Param [o]
+     * @return boolean
+     **/
     @Override
-    public boolean equals(Object o){ //传进来一定是
+    public boolean equals(Object o){ //传进来一定是Object类型, 而不是我们自己的类型.
 
         if(this == o)
             return true;
