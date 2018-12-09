@@ -95,6 +95,7 @@ public class HashTable<K, V> { //k不需要可以比较. java所有类型都是O
         //对每一个treeMap进行初始化
 
         for(int i = 0; i < newM; i++){
+
             newHashTable[i] = new TreeMap<>();
         }
 
