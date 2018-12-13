@@ -8,7 +8,7 @@ import java.util.TreeMap; //哈希表可以看成是treeMap的数组
  * @CreateDate: 2018/12/5 14:46
  * <p>Copyright: Copyright (c) 2018</p>
  */
-public class HashTable<K, V> { //k不需要可以比较. java所有类型都是Object的子类.就已经实现了hashCode的方法
+public class HashTable<K, V> {  //k不需要可以比较. java所有类型都是Object的子类.就已经实现了hashCode的方法
 
     private static final int upperTol = 10;
     private static final int lowerTol = 2;
